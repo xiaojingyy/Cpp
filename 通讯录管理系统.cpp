@@ -2,10 +2,10 @@
 #include<iomanip>
 #include<string>
 using namespace std;
-#define max 100//Í¨Ñ¶Â¼ÉÏÏŞÎª1000ÈË
+#define max 3//é€šè®¯å½•ä¸Šé™ä¸º3äºº
 
 
-//Éè¼ÆÁªÏµÈË½á¹¹Ìå ; Éè¼ÆÍ¨Ñ¶Â¼½á¹¹Ìå£¬Òª°üº¬ÁªÏµÈË½á¹¹Ìå ; mainº¯ÊıÖĞ´´½¨Í¨Ñ¶Â¼£¨½á¹¹Ìå±äÁ¿£©
+//è®¾è®¡è”ç³»äººç»“æ„ä½“ ; è®¾è®¡é€šè®¯å½•ç»“æ„ä½“ï¼Œè¦åŒ…å«è”ç³»äººç»“æ„ä½“ ; mainå‡½æ•°ä¸­åˆ›å»ºé€šè®¯å½•ï¼ˆç»“æ„ä½“å˜é‡ï¼‰
 
 struct person
 {
@@ -17,111 +17,140 @@ struct person
 };
 struct addressbooks
 {
-	//ÁªÏµÈËÊı×é
+	//è”ç³»äººæ•°ç»„
 	struct person personarray[max];
-	//Ä¿Ç°µÄÁªÏµÈË¸öÊı
+	//ç›®å‰çš„è”ç³»äººä¸ªæ•°
 	int size;
 };
 
-//Ìí¼ÓÁªÏµÈËº¯Êı
+//æ·»åŠ è”ç³»äººå‡½æ•°
 void addperson(addressbooks *abs)
 	{
-		//ÏÈÅĞ¶ÏÍ¨Ñ¶Â¼ÊÇ·ñÌîÂú£¬Èç¹ûÂúÁË¾Í²»ÔÙÌí¼Ó
+		//å…ˆåˆ¤æ–­é€šè®¯å½•æ˜¯å¦å¡«æ»¡ï¼Œå¦‚æœæ»¡äº†å°±ä¸å†æ·»åŠ 
 		if (abs->size > max)
 	{
-		cout << "Í¨Ñ¶Â¼ÒÑÂú£¬ÈôĞèÀ©Èİ£¬ÇëÏòyy×ªÕË500Ôö¼Ó¶î¶È" << endl;
+		cout << "é€šè®¯å½•å·²æ»¡ï¼Œè‹¥éœ€æ‰©å®¹ï¼Œè¯·å‘yyè½¬è´¦500å¢åŠ é¢åº¦" << endl;
 		return;
 	}
 	else
 	{
-		//Ìí¼ÓÁªÏµÈËĞÕÃû
+		cout << "è¾“å…¥0å³å¯è¿”å›ä¸Šä¸€ä¸ªæ­¥éª¤é‡æ–°è¾“å…¥" << endl;
+		cout << endl;
+		name://è¿™æ˜¯gotoè¯­å¥
+		//æ·»åŠ è”ç³»äººå§“å
 		string temp_name;
-		cout << "ÇëÊäÈëĞÕÃû" << endl;
+		cout << "è¯·è¾“å…¥å§“å" << endl;
 		cin >> temp_name;
+		if (temp_name == "0")
+			goto name;
 		abs->personarray[abs->size].name = temp_name;
 
-		//ĞÔ±ğ
-		cout << "ÇëÊäÈëĞÔ±ğ:" << endl;
-		cout << "1--ÄĞ" << endl;
-		cout << "2--Å®" << endl;
+		
+	//æ€§åˆ«
+		sex://è¿™æ˜¯gotoè¯­å¥
+		cout << "è¯·è¾“å…¥æ€§åˆ«:" << endl;
+		cout << "1--ç”·" << endl;
+		cout << "2--å¥³" << endl;
 		int temp_sex = 0;
+		
 		while (1)
 		{
 			cin >> temp_sex;
-			//Ö»ÓĞÊäÈëÁË1»òÕß2²ÅÄÜÍË³öÑ­»·
+			//åªæœ‰è¾“å…¥äº†1æˆ–è€…2æ‰èƒ½é€€å‡ºå¾ªç¯
 			if (temp_sex == 1 || temp_sex == 2)
 			{
 				abs->personarray[abs->size].sex = temp_sex;
-				break;//Òª¼ÇµÃÌø³öÑ­»·
+				break;//è¦è®°å¾—è·³å‡ºå¾ªç¯
 			}
+			else if (temp_sex == 0)
+				goto name;
 			else
-				cout << "±ğÂÒ¸ã£¬ÔÙÀ´" << endl;
+				cout << "åˆ«ä¹±æï¼Œå†æ¥" << endl;
 		}
+		
 
-		//ÄêÁä
-		cout << "ÇëÊäÈëÄêÁä" << endl;
+		//å¹´é¾„
+		age://è¿™æ˜¯gotoè¯­å¥
+		cout << "è¯·è¾“å…¥å¹´é¾„" << endl;
 		int temp_age = 0;
 		while (1)
 		{
 			cin >> temp_age;
-			if (temp_age > 0 && temp_age < 100)
+			if (temp_age == 0)
+				goto sex;
+			else if (temp_age > 0 && temp_age < 100)
 			{
 				abs->personarray[abs->size].age = temp_age;
 				break;
 			}
+			
 			else
-				cout << "Ì«ÀëÆ×ÁË£¬ÖØÀ´£¡" << endl;
+				cout << "å¤ªç¦»è°±äº†ï¼Œé‡æ¥ï¼" << endl;
 		}
 
-		//µç»°
-		cout << "ÇëÊäÈëµç»°" << endl;
+		//ç”µè¯
+		phone://è¿™æ˜¯gotoè¯­å¥
+		cout << "è¯·è¾“å…¥ç”µè¯" << endl;
 		string temp_phone;
 		cin >> temp_phone;
+		if (temp_phone == "0")
+			goto age;
 		abs->personarray[abs->size].phone = temp_phone;
-		cout << "ÔÙ´ÎÈ·ÈÏµç»°ºÅÂëÎª£º"<<temp_phone << endl;
+		cout << "å†æ¬¡ç¡®è®¤ç”µè¯å·ç ä¸ºï¼š"<<temp_phone << endl;
 
-		//×¡Ö·
-		cout << "ÇëÊäÈë¼ÒÍ¥×¡Ö·" << endl;
+		//ä½å€
+		address:
+		cout << "è¯·è¾“å…¥å®¶åº­ä½å€" << endl;
 		string address;
 		cin >> address;
+		if (address == "0")
+			goto phone;
+		cout << "æ˜¯å¦éœ€è¦é‡æ–°è¾“å…¥ï¼Ÿ" << endl;
+		cout << "1--éœ€è¦é‡æ–°è¾“å…¥" << endl;
+		cout << "å…¶ä»–--æˆ‘ç¡®å®šäº†" << endl;
+		int zhuzhi;
+		cin >> zhuzhi;
+		if (zhuzhi == 1)
+			goto address;
+		else cout << endl;
 		abs->personarray[abs->size].addr = address;
 
-		//Ôö¼ÓÍêÒ»¸öÁªÏµÈËºóÒª½«Í¨Ñ¶Â¼ÈËÊı¼ÓÒ»
+		//å¢åŠ å®Œä¸€ä¸ªè”ç³»äººåè¦å°†é€šè®¯å½•äººæ•°åŠ ä¸€
 		abs->size++;
-		cout << "******  Ìí¼Ó³É¹¦!  ******" << endl;
+		cout << "******  æ·»åŠ æˆåŠŸ!  ******" << endl;
 
-		system("pause");//Çë°´ÈÎÒâ¼ü¼ÌĞø
-		system("cls");//ÇåÆÁ²Ù×÷
+		system("pause");//è¯·æŒ‰ä»»æ„é”®ç»§ç»­
+		system("cls");//æ¸…å±æ“ä½œ
 	}
 }
 
-//2:ÏÔÊ¾ËùÓĞÁªÏµÈË
+//2:æ˜¾ç¤ºæ‰€æœ‰è”ç³»äºº
 void showperson(addressbooks*abs)
 {
 
 	if (abs->size == 0)
-		cout << "µ±Ç°Í¨Ñ¶Â¼ÖĞÎŞÁªÏµÈË" << endl;
+		cout << "å½“å‰é€šè®¯å½•ä¸­æ— è”ç³»äºº" << endl;
 	else
-		cout << "Äãµ±Ç°Í¨Ñ¶Â¼ÖĞÓĞ" << abs->size << "ÈË" << endl;
+		cout << "ä½ å½“å‰é€šè®¯å½•ä¸­æœ‰" << abs->size << "äºº" << endl;
 	for (int i = 0; i < abs->size; i++)
 	{
 		cout	<< abs->personarray[i].name		<< setw(6) 
-				<<(abs->personarray[i].sex == 1 ? "ÄĞ" : "Å®") << setw(6)
+				<<(abs->personarray[i].sex == 1 ? "ç”·" : "å¥³") << setw(6)
 				<< abs->personarray[i].age		<< setw(6) 
 				<< abs->personarray[i].phone	<< setw(15)
 				<< abs->personarray[i].addr		<< endl;
 	}
-	system("pause");//Çë°´ÈÎÒâ¼ü¼ÌĞø
-	system("cls");//ÇåÆÁ²Ù×÷
+	system("pause");//è¯·æŒ‰ä»»æ„é”®ç»§ç»­
+	system("cls");//æ¸…å±æ“ä½œ
 }
 
 
-//¼ì²âÁªÏµÈËÊÇ·ñ´æÔÚ£¬Èç¹û´æÔÚ£¬Ôò·µ»ØÁªÏµÈËËùÔÚÊı×éÖĞµÄÎ»ÖÃ£¬²»´æÔÚÔò·µ»Ø-1£»
-int exist(addressbooks* abs, string name)//´«ÈëÒ»¸öÍ¨Ñ¶Â¼ºÍÈËÃû
+//æ£€æµ‹è”ç³»äººæ˜¯å¦å­˜åœ¨ï¼Œå¦‚æœå­˜åœ¨ï¼Œåˆ™è¿”å›è”ç³»äººæ‰€åœ¨æ•°ç»„ä¸­çš„ä½ç½®ï¼Œä¸å­˜åœ¨åˆ™è¿”å›-1ï¼›
+int exist(addressbooks* abs, string name)//ä¼ å…¥ä¸€ä¸ªé€šè®¯å½•å’Œäººå
 {
 	for (int i = 0; i <= abs->size;i++)
 	{
-		//²éÕÒÓÃ»§ÊäÈëµÄĞÕÃû
+		//æŸ¥æ‰¾ç”¨æˆ·è¾“å…¥çš„å§“å
 		if (abs->personarray[i].name == name)	
 			return i;	
 		else
@@ -129,26 +158,26 @@ int exist(addressbooks* abs, string name)//´«ÈëÒ»¸öÍ¨Ñ¶Â¼ºÍÈËÃû
 
 	}
 }
-//É¾³ıÁªÏµÈË
+//åˆ é™¤è”ç³»äºº
 void deleteperson(addressbooks* abs)
 {
-	cout << "ÇëÊäÈëÄúÒªÉ¾³ıµÄÁªÏµÈË" << endl;
+	cout << "è¯·è¾“å…¥æ‚¨è¦åˆ é™¤çš„è”ç³»äºº" << endl;
 	string name;
 	cin >> name;
 	
-	//ÊÇ·ñÕÒµ½Õâ¸öÈË
+	//æ˜¯å¦æ‰¾åˆ°è¿™ä¸ªäºº
 	int whether =exist(abs, name);
 	if (whether != -1)
 	{
-		cout << "ÄãÈ·¶¨ÒªÉ¾³ıÕâ¸öÁªÏµÈËÂğ£¿" << endl;
-		cout << "ĞÕÃû:" << abs->personarray[whether].name << "\t"
-			<< "ĞÔ±ğ:" << abs->personarray[whether].sex << "\t"
-			<< "ÄêÁä:" << abs->personarray[whether].age << "\t"
-			<< "µç»°:" << abs->personarray[whether].phone << "\t"
-			<< "×¡Ö·:" << abs->personarray[whether].addr << endl;
+		cout << "ä½ ç¡®å®šè¦åˆ é™¤è¿™ä¸ªè”ç³»äººå—ï¼Ÿ" << endl;
+		cout << "å§“å:" << abs->personarray[whether].name << "\t"
+			<< "æ€§åˆ«:" << abs->personarray[whether].sex << "\t"
+			<< "å¹´é¾„:" << abs->personarray[whether].age << "\t"
+			<< "ç”µè¯:" << abs->personarray[whether].phone << "\t"
+			<< "ä½å€:" << abs->personarray[whether].addr << endl;
 
-		cout << "1--È·¶¨" << "\t";
-		cout << "2--ËãÁË" << endl;
+		cout << "1--ç¡®å®š" << "\t";
+		cout << "2--ç®—äº†" << endl;
 		
 		int yes;
 		cin >> yes;
@@ -156,19 +185,19 @@ void deleteperson(addressbooks* abs)
 		{
 			for (int i = whether; i < abs->size; i++)
 			{
-				//Ã¿¸öÁªÏµÈËµÄËùÓĞÊı¾İÇ°ÒÆ
+				//æ¯ä¸ªè”ç³»äººçš„æ‰€æœ‰æ•°æ®å‰ç§»
 				abs->personarray[i] = abs->personarray[i + 1];
 			}
-			abs->size--;//¸üĞÂÍ¨Ñ¶Â¼ÖĞÈËÔ±ÊıÁ¿
-			cout << "É¾³ı³É¹¦" << endl;
+			abs->size--;//æ›´æ–°é€šè®¯å½•ä¸­äººå‘˜æ•°é‡
+			cout << "åˆ é™¤æˆåŠŸ" << endl;
 		}
 		else system("pause");
 
 	}
 	else if(whether==-1)
 	{
-		//²éÎŞ´ËÈË
-		cout << "²éÎŞ´ËÈË" << endl;
+		//æŸ¥æ— æ­¤äºº
+		cout << "æŸ¥æ— æ­¤äºº" << endl;
 	}
 	system("pause");
 	system("cls");
@@ -177,80 +206,80 @@ void deleteperson(addressbooks* abs)
 
 }
 
-//4:²éÕÒÖ¸¶¨ÁªÏµÈËĞÅÏ¢
+//4:æŸ¥æ‰¾æŒ‡å®šè”ç³»äººä¿¡æ¯
 
 void findperson(addressbooks* abs)
 {
-	cout<<"ÇëÊäÈëÄãÒª²éÕÒµÄÁªÏµÈË:"<<endl;
+	cout<<"è¯·è¾“å…¥ä½ è¦æŸ¥æ‰¾çš„è”ç³»äºº:"<<endl;
 	string name;
 	cin >> name;
-	//ÅĞ¶ÏÖ¸¶¨µÄÁªÏµÈËÊÇ·ñÔÚÍ¨Ñ¶Â¼ÖĞ
+	//åˆ¤æ–­æŒ‡å®šçš„è”ç³»äººæ˜¯å¦åœ¨é€šè®¯å½•ä¸­
 	int whether = exist(abs, name);
 	if (whether != -1) {
-		cout << "ĞÕÃû:" << abs->personarray[whether].name  << "\t"
-			 << "ĞÔ±ğ:" << abs->personarray[whether].sex   << "\t"
-			 << "ÄêÁä:" << abs->personarray[whether].age   << "\t"
-			 << "µç»°:" << abs->personarray[whether].phone << "\t"
-			 << "×¡Ö·:" << abs->personarray[whether].addr  << "\t";
+		cout << "å§“å:" << abs->personarray[whether].name  << "\t"
+			 << "æ€§åˆ«:" << abs->personarray[whether].sex   << "\t"
+			 << "å¹´é¾„:" << abs->personarray[whether].age   << "\t"
+			 << "ç”µè¯:" << abs->personarray[whether].phone << "\t"
+			 << "ä½å€:" << abs->personarray[whether].addr  << "\t";
 	}
 	else if (whether == -1)
 	{
-		cout << "²éÎŞ´ËÈË" << endl;
+		cout << "æŸ¥æ— æ­¤äºº" << endl;
 	}
 
 	system("pause");
 	system("cls");
 }
 
-//5:ĞŞ¸ÄÁªÏµÈË
+//5:ä¿®æ”¹è”ç³»äºº
 void modifyperson(addressbooks* abs)
 {
-	cout << "ÇëÊäÈëÄãÒªĞŞ¸ÄµÄÁªÏµÈË" << endl;
+	cout << "è¯·è¾“å…¥ä½ è¦ä¿®æ”¹çš„è”ç³»äºº" << endl;
 	string name;
 	cin >> name;
 	
 	int whether = exist(abs, name);
-	if (whether != -1)	//ÕÒµ½Ö¸¶¨ÁªÏµÈË
+	if (whether != -1)	//æ‰¾åˆ°æŒ‡å®šè”ç³»äºº
 	{
-		cout << "ÄãÈ·¶¨ÒªĞŞ¸ÄÕâ¸öÁªÏµÈËÂğ£¿" << endl;
-		cout << "ĞÕÃû:" << abs->personarray[whether].name << "\t"
-			<< "ĞÔ±ğ:" << abs->personarray[whether].sex << "\t"
-			<< "ÄêÁä:" << abs->personarray[whether].age << "\t"
-			<< "µç»°:" << abs->personarray[whether].phone << setw (15)
-			<< "×¡Ö·:" << abs->personarray[whether].addr <<endl;
+		cout << "ä½ ç¡®å®šè¦ä¿®æ”¹è¿™ä¸ªè”ç³»äººå—ï¼Ÿ" << endl;
+		cout << "å§“å:" << abs->personarray[whether].name << "\t"
+			<< "æ€§åˆ«:" << abs->personarray[whether].sex << "\t"
+			<< "å¹´é¾„:" << abs->personarray[whether].age << "\t"
+			<< "ç”µè¯:" << abs->personarray[whether].phone << setw (15)
+			<< "ä½å€:" << abs->personarray[whether].addr <<endl;
 
-		cout << "1--È·¶¨" << "\t";
-		cout << "2--ËãÁË" << endl;
+		cout << "1--ç¡®å®š" << "\t";
+		cout << "2--ç®—äº†" << endl;
 		int yes;
 		cin >> yes;
 		if (yes == 1)
 		{
 			string temp_name;
-			cout << "ÇëÊäÈëĞÕÃû" << endl;
+			cout << "è¯·è¾“å…¥å§“å" << endl;
 			cin >> temp_name;
 			abs->personarray[whether].name = temp_name;
 
-			//ĞÔ±ğ
-			cout << "ÇëÊäÈëĞÔ±ğ:" << endl;
-			cout << "1--ÄĞ" << endl;
-			cout << "2--Å®" << endl;
+			//æ€§åˆ«
+			cout << "è¯·è¾“å…¥æ€§åˆ«:" << endl;
+			cout << "1--ç”·" << endl;
+			cout << "2--å¥³" << endl;
 			int temp_sex = 0;
 			while (1)
 			{
 				cin >> temp_sex;
-				//Ö»ÓĞÊäÈëÁË1»òÕß2²ÅÄÜÍË³öÑ­»·
+				//åªæœ‰è¾“å…¥äº†1æˆ–è€…2æ‰èƒ½é€€å‡ºå¾ªç¯
 				if (temp_sex == 1 || temp_sex == 2)
 				{
 					abs->personarray[whether].sex = temp_sex;
-					break;//Òª¼ÇµÃÌø³öÑ­»·
+					break;//è¦è®°å¾—è·³å‡ºå¾ªç¯
 				}
 				else
-					cout << "±ğÂÒ¸ã£¬ÔÙÀ´" << endl;
+					cout << "åˆ«ä¹±æï¼Œå†æ¥" << endl;
 
 			}
 
-			//ÄêÁä
-			cout << "ÇëÊäÈëÄêÁä" << endl;
+			//å¹´é¾„
+			cout << "è¯·è¾“å…¥å¹´é¾„" << endl;
 			int temp_age = 0;
 			while (1)
 			{
@@ -261,23 +290,23 @@ void modifyperson(addressbooks* abs)
 					break;
 				}
 				else
-					cout << "Ì«ÀëÆ×ÁË£¬ÖØÀ´£¡" << endl;
+					cout << "å¤ªç¦»è°±äº†ï¼Œé‡æ¥ï¼" << endl;
 			}
 
-			//µç»°
-			cout << "ÇëÊäÈëµç»°" << endl;
+			//ç”µè¯
+			cout << "è¯·è¾“å…¥ç”µè¯" << endl;
 			string temp_phone;
 			cin >> temp_phone;
 			abs->personarray[whether].phone = temp_phone;
-			cout << "ÔÙ´ÎÈ·ÈÏµç»°ºÅÂëÎª£º" << temp_phone << endl;
+			cout << "å†æ¬¡ç¡®è®¤ç”µè¯å·ç ä¸ºï¼š" << temp_phone << endl;
 
-			//×¡Ö·
-			cout << "ÇëÊäÈë¼ÒÍ¥×¡Ö·" << endl;
+			//ä½å€
+			cout << "è¯·è¾“å…¥å®¶åº­ä½å€" << endl;
 			string address;
 			cin >> address;
 			abs->personarray[whether].addr = address;
 
-			cout << "ĞŞ¸Ä³É¹¦" << endl;
+			cout << "ä¿®æ”¹æˆåŠŸ" << endl;
 
 		}
 		else system("pause");
@@ -286,50 +315,50 @@ void modifyperson(addressbooks* abs)
 	}
 	else if (whether == -1)
 	{
-		cout << "²éÎŞ´ËÈË" << endl;
+		cout << "æŸ¥æ— æ­¤äºº" << endl;
 	}
 
 		system("pause");
 		system("cls");
 }
 
-//6:Çå¿ÕÁªÏµÈË
+//6:æ¸…ç©ºè”ç³»äºº
 
-//»»¸öË¼Â·£ºÖ»Òª½«Í¨Ñ¶Â¼ÈËÊıÖØÖÃ¾Í¿ÉÒÔ
+//æ¢ä¸ªæ€è·¯ï¼šåªè¦å°†é€šè®¯å½•äººæ•°é‡ç½®å°±å¯ä»¥
 void allcleanperson(addressbooks* abs)
 {
-	cout << "ÄãÈ·¶¨ÒªÇå¿ÕËùÓĞÁªÏµÈËÂğ£¿´Ë²Ù×÷²»¿É³·Ïú£¡" << endl;
-	cout << "1--ÎÒÏëºÃÁË" << endl;
-	cout << "2--ÎÒÔÙÏëÏë" << endl;
+	cout << "ä½ ç¡®å®šè¦æ¸…ç©ºæ‰€æœ‰è”ç³»äººå—ï¼Ÿæ­¤æ“ä½œä¸å¯æ’¤é”€ï¼" << endl;
+	cout << "1--æˆ‘æƒ³å¥½äº†" << endl;
+	cout << "2--æˆ‘å†æƒ³æƒ³" << endl;
 	int whether;
 	cin >> whether;
 	if (whether == 1)
 	{
-		cout << "ÇëÊäÈëÃÜÂë£º" << endl;
+		cout << "è¯·è¾“å…¥å¯†ç ï¼š" << endl;
 		int password = 0;
 		cin >> password;
 		if (password == 214)
 		{
-			cout << "ÃÜÂëÕıÈ·,¼´½«Çå¿ÕËùÓĞÁªÏµÈË" << endl;
+			cout << "å¯†ç æ­£ç¡®,å³å°†æ¸…ç©ºæ‰€æœ‰è”ç³»äºº" << endl;
 				abs->size = 0;
-				cout << "Í¨Ñ¶Â¼ÒÑÇå¿Õ" << endl;
+				cout << "é€šè®¯å½•å·²æ¸…ç©º" << endl;
 				system("pause");
 				system("cls");
 		}
 		else {
-			cout << "²»ÖªµÀÃÜÂë¾Í±ğÂÒ¸ã" << endl;
+			cout << "ä¸çŸ¥é“å¯†ç å°±åˆ«ä¹±æ" << endl;
 			system("pause");
 			system("cls");
 		}
 	}
 	else if (whether == 2)
 	{
-		cout << "Õâ¾Í¶ÔÁËÂï,¹Ô°¡±¦×Ó£¬±ğÂÒÀ´" << endl;
+		cout << "è¿™å°±å¯¹äº†å˜›,ä¹–å•Šå®å­ï¼Œåˆ«ä¹±æ¥" << endl;
 		system("pause");
 		system("cls");
 	}
 	else {
-		cout << "ÄãÏëÕ¦µÎ£¬±ğÂÒÀ´°¡" << endl;
+		cout << "ä½ æƒ³å’‹æ»´ï¼Œåˆ«ä¹±æ¥å•Š" << endl;
 		system("pause");
 		system("cls");
 		return;
@@ -338,25 +367,27 @@ void allcleanperson(addressbooks* abs)
 	
 }
 
-//²Ëµ¥½çÃæ
+//èœå•ç•Œé¢
 void showmenu()
 {
 	cout << "**************************" << endl;
-	cout << "*****  1:Ìí¼ÓÁªÏµÈË  *****" << endl;
-	cout << "*****  2:ÏÔÊ¾ÁªÏµÈË  *****" << endl;
-	cout << "*****  3:É¾³ıÁªÏµÈË  *****" << endl;
-	cout << "*****  4:²éÕÒÁªÏµÈË  *****" << endl;
-	cout << "*****  5:ĞŞ¸ÄÁªÏµÈË  *****" << endl;
-	cout << "*****  6:Çå¿ÕÁªÏµÈË  *****" << endl;
-	cout << "*****  0:ÍË³öÍ¨Ñ¶Â¼  *****" << endl;
+	cout << "*****  1:æ·»åŠ è”ç³»äºº  *****" << endl;
+	cout << "*****  2:æ˜¾ç¤ºè”ç³»äºº  *****" << endl;
+	cout << "*****  3:åˆ é™¤è”ç³»äºº  *****" << endl;
+	cout << "*****  4:æŸ¥æ‰¾è”ç³»äºº  *****" << endl;
+	cout << "*****  5:ä¿®æ”¹è”ç³»äºº  *****" << endl;
+	cout << "*****  6:æ¸…ç©ºè”ç³»äºº  *****" << endl;
+	cout << "*****  0:é€€å‡ºé€šè®¯å½•  *****" << endl;
 	cout << "**************************" << endl;
+	cout << endl;
+	
 
 }
 int main()
 {
-		//´´½¨½á¹¹Ìå±äÁ¿
+		//åˆ›å»ºç»“æ„ä½“å˜é‡
 		addressbooks abs;
-		//³õÊ¼»¯Í¨Ñ¶Â¼µ±Ç°ÈËÔ±¸öÊı
+		//åˆå§‹åŒ–é€šè®¯å½•å½“å‰äººå‘˜ä¸ªæ•°
 		abs.size = 0;
 
 		int select = 0;
@@ -366,26 +397,32 @@ int main()
 			cin >> select;
 			switch (select)
 			{
-			case 1://Ìí¼Ó,Ê¹ÓÃµØÖ·´«µİ
+			case 1://æ·»åŠ ,ä½¿ç”¨åœ°å€ä¼ é€’
+				cout << "æ·»åŠ è”ç³»äºº" << endl;
 				addperson(&abs);
 				break;
-			case 2://ÏÔÊ¾
+			case 2://æ˜¾ç¤º
+				cout << "æ˜¾ç¤ºè”ç³»äºº" << endl;
 				showperson(&abs);
 				break;
-			case 3://É¾³ı
+			case 3://åˆ é™¤
+				cout << "åˆ é™¤è”ç³»äºº" << endl;
 				deleteperson(&abs);
-				break;//µ±breakÇ°ÓĞÒ»´ó¶Î´úÂë£¬ĞèÒªÓÃ´óÀ¨ºÅ°ü×¡
-			case 4://²éÕÒ
+				break;//å½“breakå‰æœ‰ä¸€å¤§æ®µä»£ç ï¼Œéœ€è¦ç”¨å¤§æ‹¬å·åŒ…ä½
+			case 4://æŸ¥æ‰¾
+				cout << "æŸ¥æ‰¾è”ç³»äºº" << endl;
 				findperson(&abs);
 				break;
-			case 5://ĞŞ¸Ä
+			case 5://ä¿®æ”¹
+				cout << "ä¿®æ”¹è”ç³»äºº" << endl;
 				modifyperson(&abs);
 				break;
-			case 6://Çå¿Õ
+			case 6://æ¸…ç©º
+				cout << "æ¸…ç©ºè”ç³»äºº" << endl;
 				allcleanperson(&abs);
 				break;
-			case 0://ÍË³ö
-				cout << "»¶Ó­ÔÙ´ÎÊ¹ÓÃ" << endl;
+			case 0://é€€å‡º
+				cout << "å³å°†é€€å‡ºé€šè®¯å½•,æ¬¢è¿å†æ¬¡ä½¿ç”¨" << endl;
 				return 0;
 				break;
 			default:cout << "wrong number" << endl;
