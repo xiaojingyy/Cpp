@@ -107,7 +107,7 @@ void addperson(addressbooks *abs)
 			goto phone;
 		cout << "是否需要重新输入？" << endl;
 		cout << "1--需要重新输入" << endl;
-		cout << "其他--我确定了" << endl;
+		cout << "其他数字--我确定了" << endl;
 		int zhuzhi;
 		cin >> zhuzhi;
 		if (zhuzhi == 1)
